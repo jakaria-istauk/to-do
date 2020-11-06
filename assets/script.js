@@ -1,4 +1,4 @@
-jQuery(function($){
+$(document).ready(function(){
 
 	$('#to-do-lists li.checked').hide();
 
@@ -22,7 +22,7 @@ jQuery(function($){
 
 	function update_item_status( id, status ){
 		$.ajax({
-			url: LTD.ajaxurl,
+			url: ajaxurl,
 			data: { action: 'update-status', id: id, status:status },
 			type: 'POST',
 			dataType: 'JSON',
@@ -37,7 +37,7 @@ jQuery(function($){
 
 	function delete_item( id ) {
 		$.ajax({
-			url: LTD.ajaxurl,
+			url: ajaxurl,
 			data: { action: 'delete-item', id: id },
 			type: 'POST',
 			dataType: 'JSON',
@@ -50,15 +50,16 @@ jQuery(function($){
 		});
 	}
 
-	$('#ltd-form').on('submit', function(e){
+	$(document).on('submit', '#ltd-form', function(e){
 		e.preventDefault();
 		var $formData = $( this ).serializeArray();
 		$.ajax({
-			url: LTD.ajaxurl,
+			url: ajaxurl,
 			data: $formData,
 			type: 'POST',
 			dataType: 'JSON',
 			success: function( resp ) {
+				console.log(resp)
 				if ( resp.list ) {
 					$('#to-do-lists').html( resp.list )
 				}
@@ -89,7 +90,7 @@ jQuery(function($){
 	$(document).on( 'change', '.text', function() {
 		var par = $(this).parent();
 		$.ajax({
-			url: LTD.ajaxurl,
+			url: ajaxurl,
 			data: { action: 'update-item', id:par.data('id'), value: $(this).val() },
 			type: 'POST',
 			dataType: 'JSON',

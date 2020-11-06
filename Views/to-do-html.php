@@ -3,7 +3,8 @@
 	// $_table = "{$wpdb->prefix}list_to_do";
 	// $sql 	= "SELECT * FROM {$_table} ORDER BY `id` DESC";
 	// $items 	= $wpdb->get_results( $sql );
-	
+	use jakaria\To_Do_List\Ajax;
+	$ajax = new Ajax;
  ?>
 <!DOCTYPE html>
 <html>
@@ -53,7 +54,10 @@
 			</div>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script >
+		var ajaxurl = "<?php echo '/'. TDL_DIR . '/includes/Action.php' ?>"
+	</script>
 	<script src="/<?php echo TDL_DIR ?>/assets/script.js"></script>
 </body>
 </html>

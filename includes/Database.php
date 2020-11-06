@@ -22,6 +22,11 @@ class Database
 		  die("Connection failed: " . $mysqli->connect_error);
 		}
 
+		return $mysqli;
+	}
+
+	public function create_to_do_table(){
+		
 		$sql = "EXITS( SELECT * FROM to_do_list )";
 
 		$exits = $mysqli->query( $sql );
@@ -36,7 +41,5 @@ class Database
 
 			$table = $mysqli->query( $table_sql );
 		}
-
-		return $mysqli;
 	}
 }
